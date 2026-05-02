@@ -1,5 +1,7 @@
+package profile
+
 fun main() {
-    val person = Person()
+//    val person = profile.Person()
 
 //    print("Enter your name: ")
 //    person.name = readlnOrNull()
@@ -13,7 +15,7 @@ fun main() {
 //    print("Enter your weight: ")
 //    person.weight = readlnOrNull()?.toDouble()
 
-    println("Name ${person.name} is ${person.age} years old is ${person.height} is ${person.weight}")
-    person.sayHello()
+//    println("Name ${person.name} is ${person.age} years old is ${person.height} is ${person.weight}")
+//    person.sayHello()
 
 }

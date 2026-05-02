@@ -1,3 +1,5 @@
+package profile
+
 class Person(
     private val name: String,
     private val age: Int,

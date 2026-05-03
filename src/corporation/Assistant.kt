@@ -9,7 +9,7 @@ class Assistant(
     name = name,
     age = age,
     position = EmployeeType.ASSISTANT
-) {
+), Cleaner, Supplier {
 
     override fun work() {
         bringCoffee()

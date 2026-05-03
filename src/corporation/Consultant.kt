@@ -11,7 +11,7 @@ class Consultant(
     name = name,
     age = age,
     position = EmployeeType.CONSULTANT
-) {
+), Cleaner {
 
     override fun work() {
         serveClient()

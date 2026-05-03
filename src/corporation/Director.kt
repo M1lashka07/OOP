@@ -9,7 +9,9 @@ class Director(
     name = name,
     age = age,
     position = EmployeeType.DIRECTOR
-) {
+), Supplier {
+
+    override fun work() {}
 
     fun takeCoffee(assistant: Assistant) {
         val drinkName = assistant.bringCoffee()

@@ -12,12 +12,12 @@ class Accountant(
     name = name,
     age = age,
     position = EmployeeType.ACCOUNTANT
-) {
+), Cleaner, Supplier {
 
-    val productFile = File("items.txt")
-    val employeeFile = File("employee.txt")
+    private val productFile = File("items.txt")
+    private val employeeFile = File("employee.txt")
 
-    fun registerNewItem() {
+    private fun registerNewItem() {
         val productTypes = ProductType.entries
         print("Enter the product type. ")
         productTypes.forEach { type ->
@@ -73,7 +73,7 @@ class Accountant(
 
     }
 
-    fun readFile(): MutableList<ProductCard> {
+    private fun readFile(): MutableList<ProductCard> {
         val products = mutableListOf<ProductCard>()
         productFile.forEachLine {
             val elements = it.split("%")
@@ -104,13 +104,13 @@ class Accountant(
         return products
     }
 
-    fun showAllItems() {
+    private fun showAllItems() {
 
         readFile().forEach { println(it) }
 
     }
 
-    fun removeProductCard() {
+    private fun removeProductCard() {
 
         val cards = readFile()
         print("Enter the product name for removed items: ")
@@ -121,7 +121,7 @@ class Accountant(
         cards.forEach { saveProductCard(it) }
     }
 
-    fun saveProductCard(productCard: ProductCard) {
+    private fun saveProductCard(productCard: ProductCard) {
 
         productFile.appendText("${productCard.name}%${productCard.brand}%${productCard.price}%")
 
@@ -135,7 +135,7 @@ class Accountant(
 
     }
 
-    fun registerNewEmployee() {
+    private fun registerNewEmployee() {
         val employeeTypes = EmployeeType.entries
 
         print("Choose position: ")
@@ -159,16 +159,19 @@ class Accountant(
                 name = employeeName,
                 age = employeeAge
             )
+
             EmployeeType.ACCOUNTANT -> Accountant(
                 id = employeeId,
                 name = employeeName,
                 age = employeeAge
             )
+
             EmployeeType.ASSISTANT -> Assistant(
                 id = employeeId,
                 name = employeeName,
                 age = employeeAge
             )
+
             EmployeeType.CONSULTANT -> Consultant(
                 id = employeeId,
                 name = employeeName,
@@ -180,7 +183,7 @@ class Accountant(
 
     }
 
-    fun removeEmployee() {
+    private fun removeEmployee() {
 
         val employees = loadEmployees()
         print("Enter the employee ID for removed: ")
@@ -193,13 +196,13 @@ class Accountant(
 
     }
 
-    fun showAllEmployees() {
+    private fun showAllEmployees() {
 
         loadEmployees().forEach { println(it) }
 
     }
 
-    fun loadEmployees() : MutableList<Worker> {
+    fun loadEmployees(): MutableList<Worker> {
         val workers = mutableListOf<Worker>()
         employeeFile.forEachLine {
             val elements = it.split("%")
@@ -209,16 +212,19 @@ class Accountant(
                     name = elements[1],
                     age = elements[2].toInt(),
                 )
+
                 EmployeeType.ACCOUNTANT -> Accountant(
                     id = elements[0].toInt(),
                     name = elements[1],
                     age = elements[2].toInt(),
                 )
+
                 EmployeeType.ASSISTANT -> Assistant(
                     id = elements[0].toInt(),
                     name = elements[1],
                     age = elements[2].toInt(),
                 )
+
                 EmployeeType.CONSULTANT -> Consultant(
                     id = elements[0].toInt(),
                     name = elements[1],
@@ -230,7 +236,7 @@ class Accountant(
         return workers
     }
 
-    fun saveEmployee(worker: Worker) {
+    private fun saveEmployee(worker: Worker) {
 
         employeeFile.appendText("${worker.id}%${worker.name}%${worker.age}%${worker.position}")
 

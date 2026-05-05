@@ -4,22 +4,22 @@ import java.io.File
 
 object WorkersRepository {
 
-    private val _workers = loadEmployees()
-    val workers: MutableList<Worker>
-        get() = _workers
-
     private val employeeFile = File("employee.txt")
+
+    private val _workers = loadEmployees()
+    val workers: List<Worker>
+        get() = _workers.toList()
 
     fun saveWorker(worker: Worker) {
 
-        workers.add(worker)
+        _workers.add(worker)
 
     }
 
     fun saveChanges(){
 
         val content = StringBuilder()
-        workers.forEach {worker ->
+        _workers.forEach {worker ->
             content.append("${worker.id}%${worker.name}%${worker.age}%${worker.getSalary()}%${worker.position}")
         }
 
@@ -67,12 +67,12 @@ object WorkersRepository {
 
     fun removeEmployee(id: Int) {
 
-        workers.removeIf { it.id == id }
+        _workers.removeIf { it.id == id }
 
     }
 
     fun changeSalary(id: Int, salary: Int) {
-        workers.forEach {
+        _workers.forEach {
             if (it.id == id) it.setSalary(salary)
         }
     }

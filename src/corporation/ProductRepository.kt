@@ -4,10 +4,11 @@ import java.io.File
 
 object ProductRepository {
 
-    private val _products = loadAllProducts()
-    val products: MutableList<ProductCard>
-        get() = _products
     private val productFile = File("items.txt")
+
+    private val _products = loadAllProducts()
+    val products: List<ProductCard>
+        get() = _products.toList()
 
     private fun loadAllProducts(): MutableList<ProductCard> {
         val products = mutableListOf<ProductCard>()
@@ -35,7 +36,7 @@ object ProductRepository {
                     size = elements[3].toFloat()
                 )
             }
-            products.add(card)
+            _products.add(card)
         }
         return products
     }
@@ -63,13 +64,13 @@ object ProductRepository {
 
     fun saveProductCard(productCard: ProductCard) {
 
-        products.add(productCard)
+        _products.add(productCard)
 
     }
 
     fun removeProductCard(name: String) {
 
-        products.removeIf { it.name == name }
+        _products.removeIf { it.name == name }
 
     }
 

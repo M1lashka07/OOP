@@ -4,10 +4,12 @@ class Assistant(
     id: Int,
     name: String,
     age: Int,
+    salary: Int,
 ) : Worker(
     id = id,
     name = name,
     age = age,
+    salary = salary,
     position = EmployeeType.ASSISTANT
 ), Cleaner, Supplier {
 

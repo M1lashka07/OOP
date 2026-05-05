@@ -6,10 +6,12 @@ class Consultant(
     id: Int,
     name: String,
     age: Int? = null,
+    salary: Int,
 ) : Worker(
     id = id,
     name = name,
     age = age,
+    salary = salary,
     position = EmployeeType.CONSULTANT
 ), Cleaner {
 

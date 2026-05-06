@@ -14,6 +14,10 @@ class Accountant(
     position = EmployeeType.ACCOUNTANT
 ), Cleaner, Supplier {
 
+    override fun copy(salary: Int): Accountant {
+        return Accountant(this.id, this.name, this.age, salary)
+    }
+
     private fun registerNewItem() {
         val productTypes = ProductType.entries
         print("Enter the product type. ")

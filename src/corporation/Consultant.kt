@@ -5,7 +5,7 @@ import kotlin.random.Random
 class Consultant(
     id: Int,
     name: String,
-    age: Int? = null,
+    age: Int,
     salary: Int,
 ) : Worker(
     id = id,
@@ -19,11 +19,12 @@ class Consultant(
         serveClient()
     }
 
+    override fun copy(salary: Int): Consultant {
+        return Consultant(this.id, this.name, this.age, salary)
+    }
+
     fun sayHello() {
         print("Hello! My name is $name. ")
-        if (age != null) {
-            print("My age is $age")
-        }
     }
 
     fun serveClient(): Int {

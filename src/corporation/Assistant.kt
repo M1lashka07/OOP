@@ -13,6 +13,10 @@ class Assistant(
     position = EmployeeType.ASSISTANT
 ), Cleaner, Supplier {
 
+    override fun copy(salary: Int): Assistant {
+        return Assistant(this.id, this.name, this.age, salary)
+    }
+
     override fun work() {
         bringCoffee()
     }

@@ -20,7 +20,7 @@ object WorkersRepository {
 
         val content = StringBuilder()
         _workers.forEach {worker ->
-            content.append("${worker.id}%${worker.name}%${worker.age}%${worker.getSalary()}%${worker.position}")
+            content.append("${worker.id}%${worker.name}%${worker.age}%${worker.salary}%${worker.position}")
         }
 
         employeeFile.writeText(content.toString())
@@ -72,8 +72,10 @@ object WorkersRepository {
     }
 
     fun changeSalary(id: Int, salary: Int) {
-        _workers.forEach {
-            if (it.id == id) it.setSalary(salary)
+        _workers.forEachIndexed { index, worker ->
+            if (worker.id == id) {
+                _workers[index] = worker.copy(salary = salary)
+            }
         }
     }
 
